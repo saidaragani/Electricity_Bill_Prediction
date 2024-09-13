@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 3%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: auto;
+            background-image: url('static/twoo.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8); /* To make the form semi-transparent */
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1 {
+            margin-top: 30px;
+            color: darkorange;
+        }
+        #output{
+            font-size:40px;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+   <section><h1> Enter your daily Usage data to get your bill prediction </h1></section>
+    <form id="input-form">
+        <label for="num_fans">Number of Fans in Usage:</label>
+        <input type="number" id="num_fans" name="num_fans" required min="0" max="6" placeholder='max number is 6'>
+
+        <label for="num_lights">Number of Lights in Usage:</label>
+        <input type="number" id="num_lights" name="num_lights" required min="0" max="21" placeholder='max number is 21'>
+
+        <label for="num_tv">Number of TVs in Usage:</label>
+        <input type="number" id="num_tv" name="num_tv" required min="0" max="4" placeholder='max number is 4'>
+
+        <label for="num_fridge">Number of Fridges in Usage:</label>
+        <input type="number" id="num_fridge" name="num_fridge" required min="0" max="3" placeholder='max number is 3'>
+
+        <label for="num_ac">Number of ACs in Usage:</label>
+        <input type="number" id="num_ac" name="num_ac" required min="0" max="3" placeholder='max number is 3'>
+
+        <label for="num_wm">Number of Washing machine in Usage:</label>
+        <input type="number" id="num_wm" name="num_wm" required min="0" max="3" placeholder='max number is 3'>
+
+        <label for="hours_fans">How many hours you use Fans (per day):</label>
+        <input type="number" id="hours_fans" name="hours_fans" required min="6" max="24" placeholder='max number is 24'>
+
+        <label for="hours_lights">How many hours you use Lights (per day):</label>
+        <input type="number" id="hours_lights" name="hours_lights" required min="6" max="24" placeholder='max number is 24'>
+
+        <label for="hours_tv">How many hours you use TV (per day):</label>
+        <input type="number" id="hours_tv" name="hours_tv" required min="4" max="24" placeholder='max number is 24'>
+
+        <label for="hours_fridge">How many hours you use Fridge (per day):</label>
+        <input type="number" id="hours_fridge" name="hours_fridge" required min="10" max="24" placeholder='max number is 24'>
+
+        <label for="hours_ac">How many hours you use AC (per day):</label>
+        <input type="number" id="hours_ac" name="hours_ac" required min="1" max="24" placeholder='max number is 24'>
+
+        <label for="hours_wm">How many hours you use Washing machine (per day):</label>
+        <input type="number" id="hours_wm" name="hours_wm" required min="1" max="24" placeholder='max number is 24'>
+
+        <button type="button" onclick="validateAndSubmit()">Submit</button>
+    </form>
+
+    <h1>Predicted Bill :</h1>
+    <h2 id="output"></h2>
+
+    <script>
+        function validateAndSubmit() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const maxValue = parseInt(input.getAttribute('max'));
+                const enteredValue = parseInt(input.value);
+
+                if (enteredValue > maxValue) {
+                    input.style.borderColor = 'red';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = ''; 
+                }
+            });
+
+            if (isValid) {
+                const num_fans = document.getElementById('num_fans').value;
+                const num_lights = document.getElementById('num_lights').value;
+                const num_tv = document.getElementById('num_tv').value;
+                const num_fridge = document.getElementById('num_fridge').value;
+                const num_ac = document.getElementById('num_ac').value;
+                const num_wm = document.getElementById('num_wm').value;
+                const hours_fans = document.getElementById('hours_fans').value;
+                const hours_lights = document.getElementById('hours_lights').value;
+                const hours_tv = document.getElementById('hours_tv').value;
+                const hours_fridge = document.getElementById('hours_fridge').value;
+                const hours_ac = document.getElementById('hours_ac').value;
+                const hours_wm = document.getElementById('hours_wm').value;
+
+                const data = {
+                    num_fans,
+                    num_lights,
+                    num_tv,
+                    num_fridge,
+                    num_ac,
+                    num_wm,
+                    hours_fans,
+                    hours_lights,
+                    hours_tv,
+                    hours_fridge,
+                    hours_ac,
+                    hours_wm,
+                };
+
+                fetch('/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    document.getElementById('output').textContent = ` ${result.prediction}`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>

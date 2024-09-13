@@ -1,0 +1,55 @@
+import numpy as np
+import pandas as pd
+
+consumption_rates = {
+    'fans': 0.0311,
+    'lights': 0.014,
+    'tv': 0.1,
+    'fridge': 0.05,
+    'ac': 1.5
+}
+
+range = 100000
+data = {
+    'num_fans': np.random.randint(0, 6, range),
+    'num_lights': np.random.randint(0, 21, range),
+    'num_tv': np.random.randint(0, 4, range),
+    'num_fridge': np.random.randint(0, 3, range),
+    'num_ac': np.random.randint(0, 3, range)
+}
+
+df = pd.DataFrame(data)
+
+df[f'hours_fans'] = np.random.randint(6, 24, range)
+df[f'hours_lights'] = np.random.randint(6, 24, range)
+df[f'hours_tv'] = np.random.randint(4, 24, range)
+df[f'hours_fridge'] = np.random.randint(10, 24, range)
+df[f'hours_ac'] = np.random.randint(1, 8, range)
+
+for appliance in consumption_rates.keys():
+    df[f'{appliance}_kwh'] = (
+        df[f'num_{appliance}'] *
+        df[f'hours_{appliance}'] *
+        consumption_rates[appliance] * 30
+    )
+
+df['total_kwh'] = df[['fans_kwh', 'lights_kwh', 'tv_kwh', 'fridge_kwh', 'ac_kwh']].sum(axis=1)
+
+df['total_bill'] = 0 
+
+for appliance in consumption_rates.keys():
+    df[f'{appliance}_bill'] = (
+        df[f'num_{appliance}'] *
+        df[f'hours_{appliance}'] *
+        consumption_rates[appliance] * 30
+	j    )
+    df['total_bill'] += df[f'{appliance}_bill']
+
+df.loc[df['total_kwh'] <= 100, 'total_bill'] = df['total_kwh'] * 3.50
+df.loc[(df['total_kwh'] > 100) & (df['total_kwh'] <= 200), 'total_bill'] = df['total_kwh'] * 6.50
+df.loc[df['total_kwh'] > 200, 'total_bill'] = df['total_kwh'] * 8.50
+
+file_path = r"C:\Users\Sai Daragani PB\Downloads\ADproject7.csv" 
+df.to_csv(file_path, index=False)
+
+print(df.head())

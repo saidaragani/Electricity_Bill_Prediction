@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Electro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        nav {
+            height: 80px;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            margin: 0;
+            padding-left: 30px;
+            font-size: 30px;
+            color: darkorange;
+        }
+
+        .logo {
+            border-radius: 50%;
+            width: 90px;
+            height: 80px;
+        }
+
+        .hiii {
+            display: flex;
+            flex-direction: column;
+            color: rgb(0, 0, 0);
+            max-width: 400px;
+        }
+
+        .yes {
+            font-size: 50px;
+            font-style: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .link {
+            width: 200px;
+            height: 60px;
+            border-radius: 15px;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .image {
+            height: 300px;
+            width: 50%;
+            margin-left: 60px;
+        }
+
+        .hello {
+            display: flex;
+            align-items: center;
+            padding: 160px;
+        }
+
+        .hiii-text {
+            padding-top: 20px;
+        }
+
+        .btn {
+            width: 300px;
+            height: 80px;
+            border-radius: 15px;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            text-decoration: none;
+            justify-content: center;
+            margin-left: 40%;
+            margin-bottom:20px;
+            font-size: 20px;
+            color: green;
+            background-color: black;
+
+        }
+
+        .ha {
+            display: flex;
+            align-items: center;
+            width: 350px;
+            text-decoration: wavy;
+            height: 200px;
+            margin: 100px;
+            font-size: 40px;
+            padding-left: 130px;
+            background-color: black;
+            color: white;
+        }
+
+        section {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .stunt {
+            margin: 40px;
+            height: 300px;
+            width: 30%;
+            margin-left: 60px;
+        }
+
+        .text {
+            text-align: center;
+            width: 100%;
+            padding-left: 50px;
+        }
+
+        .para {
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+
+        .end {
+            margin-top: 6%;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-bottom: 6%;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: darkgoldenrod;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="static/logoo.jpg" class="logo">
+        <h1>The Electro</h1>
+    </nav>
+    <div class="hello">
+        <div class="hiii">
+            <div class="yes">Electricity Bill Prediction</div>
+            <div class="hiii-text">
+                Predict your monthly electricity bill using advanced machine learning algorithms.
+                Get accurate estimates and plan your budget accordingly.
+                <a class="link" href="https://en.wikipedia.org/wiki/Energy_conservation">Learn More</a>
+            </div>
+        </div>
+        <img class="image" src="static/logo.jpg">
+    </div>
+    <button class="btn" onclick="goToInputPage()">Predict Your Home Bill</button>
+    <section>
+        <div class="ha">Electricity Bill Prediction</div>
+        <img src="static/stunt.jpg" class="stunt">
+    </section>
+    <div class="text">
+        <h1 style="align-items: center;">Electricity Bill Prediction</h1>
+        <p class="para">This project aims
+            to predict the electricity bill for a given time period using
+            historical data and machine learning algorithms. By analyzing
+            past consumption patterns, weather conditions, and other
+            relevant parameters, the model will generate accurate
+            predictions to help users plan their energy usage and budget
+            accordingly. The predictions can be used by individuals,
+            households, or businesses to optimize their electricity
+            consumption and reduce costs. Stay ahead of your energy expenses
+            with our reliable electricity bill prediction system.</p>
+    </div>
+    <div class="end">
+        <h3 style="font-size: 25px;">Get accurate
+            predictions for your electricity bill based on your past
+            usage and the current trends. Stay in control of your
+            expenses and plan your budget effectively.</h3>
+        <p style="text-align: center;">Electricity Bill Prediction Product</p>
+    </div>
+
+    <script>
+        function goToInputPage() {
+            window.location.href = '/input';
+        }
+    </script>
+
+</body>
+
+</html>
